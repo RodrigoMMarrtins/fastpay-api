@@ -31,12 +31,12 @@ public class UserService {
 
     public User findUserById(Long id) throws Exception {
         return repository.findUserById(id)
-                .orElseThrow(() -> new Exception("User nor found."));
+                .orElseThrow(() -> new Exception("User not found."));
     }
 
     public void validateTransaction(User payer, BigDecimal value) throws Exception {
         if(payer.getUserType() == UserType.MERCHANT) {
-            throw new Exception("Only commom user can do transactions.");
+            throw new Exception("Only common user can do transactions.");
         }
 
         if(payer.getAccountBalance().compareTo(value) < 0) {

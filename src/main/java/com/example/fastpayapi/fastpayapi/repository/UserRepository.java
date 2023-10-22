@@ -6,7 +6,7 @@ package com.example.fastpayapi.fastpayapi.repository;
  import java.util.Optional;
  
 public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findUserByCPF(String cpf);
+    Optional<User> findUserByCPF(Long cpf);
 
     Optional<User> findUserById(Long id);
 

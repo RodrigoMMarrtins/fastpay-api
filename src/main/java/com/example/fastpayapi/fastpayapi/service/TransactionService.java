@@ -47,7 +47,7 @@ public class TransactionService {
 
     public Transaction findTransactionById(Long id) throws Exception {
         return repository.findTransactionById(id)
-                .orElseThrow(() -> new Exception("User nor found."));
+                .orElseThrow(() -> new Exception("User not found."));
     }
 
     public void startTransaction(TransactionDTO transactionDTO) throws Exception {
@@ -60,7 +60,7 @@ public class TransactionService {
         Boolean isAuthorized = this.authorizeTransaction(payer, transaction.getValue());
         if(!isAuthorized) {
             this.cancelTransaction(transaction.getId());
-            throw new Exception("Transaction not athorized.");
+            throw new Exception("Transaction not authorized.");
         }
 
         payer.setAccountBalance(payer.getAccountBalance().subtract(transaction.getValue()));

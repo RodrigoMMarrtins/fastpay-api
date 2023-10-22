@@ -14,16 +14,17 @@ import java.time.LocalDateTime;
 @Setter
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
+@AllArgsConstructor
 public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private BigDecimal value;
     @ManyToOne
-    @JoinColumn(name = "payee_id")
+    @JoinColumn(name="payee_id")
     private User payee;
     @ManyToOne
-    @JoinColumn(name = "payer_id")
+    @JoinColumn(name="payer_id")
     private User payer;
 
     private TransactionStatus status;
