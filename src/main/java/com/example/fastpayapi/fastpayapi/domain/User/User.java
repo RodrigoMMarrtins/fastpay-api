@@ -1,5 +1,6 @@
 package com.example.fastpayapi.fastpayapi.domain.User;
 
+import com.example.fastpayapi.fastpayapi.dto.UserDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,14 +22,22 @@ public class User {
     private String name;
 
     @Column(unique = true)
-    private Integer CPF;
+    private Long CPF;
 
     @Column(unique = true)
     private String email;
 
     private String password;
-    private BigDecimal accountBalance;
+    private BigDecimal accountBalance = BigDecimal.ZERO;
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    public User(UserDTO userDTO) {
+        this.name = userDTO.name();
+        this.CPF = userDTO.CPF();
+        this.email = userDTO.email();
+        this.password = userDTO.password();
+        this.userType = userDTO.userType();
+    }
 }
